@@ -14,6 +14,7 @@
 #include "DCS.h"
 #include "QBCR.h"
 #include "QBPL.h"
+#include "DStheta.h"
 
 void makeRectangularMesh(double W, double L, int Lverts, Eigen::MatrixXd& V, Eigen::MatrixXi& F)
 {
@@ -320,7 +321,7 @@ int main()
 		models["DCS"] = new DCS(V, F, h, lameAlpha, lameBeta);
         models["QBPL"] = new QBPL(V, F, h, lameAlpha, lameBeta);
 		models["QBCR"] = new QBCR(V, F, h, lameAlpha, lameBeta);
-
+		models["DS(theta)"] = new DSTheta(V, F, h, lameAlpha, lameBeta);
         
         Eigen::MatrixXd curV = V;
         
@@ -385,6 +386,8 @@ int main()
             }
             log << std::endl;            
         }   
+
+        log << std::endl;
 
         for (auto it : models)
         {
